@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { TextInput, PasswordInput, Button, Paper, Title, Text, Stack, Anchor } from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Signup() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -14,45 +17,60 @@ export default function Signup() {
     try {
       const res = await axios.post("/api/signup", form);
       setMessage("Signup successful! Now login.");
+      // Optionally redirect after signup
+      // navigate("/");
     } catch (err) {
       setMessage(err.response?.data?.message || "Error signing up");
     }
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto" }}>
-      <h2>Signup</h2>
+    <Paper shadow="md" padding="xl" radius="md" style={{ maxWidth: 400, margin: "50px auto" }}>
+      <Title order={2} align="center" mb="lg">
+        Signup
+      </Title>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={form.name}
-          onChange={handleChange}
-          required
-        />
-        <br /><br />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={form.email}
-          onChange={handleChange}
-          required
-        />
-        <br /><br />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={form.password}
-          onChange={handleChange}
-          required
-        />
-        <br /><br />
-        <button type="submit">Signup</button>
+        <Stack spacing="md">
+          <TextInput
+            label="Name"
+            placeholder="Your name"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            required
+          />
+          <TextInput
+            label="Email"
+            placeholder="you@example.com"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
+          <PasswordInput
+            label="Password"
+            placeholder="Your password"
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
+          <Button type="submit" fullWidth>
+            Signup
+          </Button>
+        </Stack>
       </form>
-      <p>{message}</p>
-    </div>
+      {message && (
+        <Text color={message.includes("successful") ? "green" : "red"} align="center" mt="md">
+          {message}
+        </Text>
+      )}
+      <Text align="center" mt="md">
+        Already have an account?{" "}
+        <Anchor href="/" onClick={(e) => { e.preventDefault(); navigate("/"); }}>
+          Login
+        </Anchor>
+      </Text>
+    </Paper>
   );
 }
