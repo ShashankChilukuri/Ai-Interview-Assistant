@@ -12,7 +12,7 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/api/signup", form);
+      const res = await axios.post("/api/signup", form);
       setMessage("Signup successful! Now login.");
     } catch (err) {
       setMessage(err.response?.data?.message || "Error signing up");

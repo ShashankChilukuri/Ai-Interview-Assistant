@@ -87,7 +87,7 @@ export default function ChatInterface() {
   // Fetch questions from backend
   const fetchTestQuestions = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/start/${testID}`);
+      const res = await axios.get(`/api/start/${testID}`);
       if (res.data.success && res.data.test) {
         const test = res.data.test;
         const dynamicQuestions = [
@@ -192,7 +192,7 @@ export default function ChatInterface() {
           answer: q.Answer,
         })),
       };
-      const res = await axios.post("http://localhost:3000/api/submit", payload);
+      const res = await axios.post("/api/submit", payload);
       if (res.data.success) {
         dispatch(
           addMessage({

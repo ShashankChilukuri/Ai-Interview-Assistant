@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
-  const navigate = useNavigate();  // <-- hook for navigation
-
+  const navigate = useNavigate();  
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -14,7 +13,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/api/login", form);
+      const res = await axios.post("/api/login", form);
       localStorage.setItem("token", res.data.token); // save token
       setMessage("Login successful!");
       console.log(res.data)

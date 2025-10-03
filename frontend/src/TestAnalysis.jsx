@@ -33,7 +33,7 @@ export default function TestAnalysis() {
     const fetchTest = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get(`http://localhost:3000/api/start/${testID}`, {
+        const res = await axios.get(`/api/start/${testID}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setTest(res.data.test);

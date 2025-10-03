@@ -75,7 +75,7 @@ export default function Home() {
     }
 
     try {
-      const res = await axios.post("http://localhost:3000/api/login", {
+      const res = await axios.post("/api/login", {
         email: interviewerEmail,
         password: interviewerPassword,
       });

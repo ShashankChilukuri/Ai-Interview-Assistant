@@ -36,7 +36,7 @@ export default function CreateTest() {
         return;
       }
       const res = await axios.post(
-        "http://localhost:3000/api/generate",
+        "/api/generate",
         {
           roles: rolesArr,
           numberOfQuestions: numberOfQuestions,
@@ -67,7 +67,7 @@ export default function CreateTest() {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        "http://localhost:3000/api/create",
+        "/api/create",
         {
           name: title,
           numberOfQuestions: Math.min(numberOfQuestions, questions.length),

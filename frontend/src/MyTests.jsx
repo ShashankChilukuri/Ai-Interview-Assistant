@@ -25,7 +25,7 @@ export default function MyTests() {
     const fetchTests = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:3000/api/my-tests", {
+        const res = await axios.get("/api/my-tests", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setTests(res.data.tests);
