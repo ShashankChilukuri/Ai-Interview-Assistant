@@ -91,9 +91,7 @@ export default function Home() {
   return (
     <Container size="sm" mt="xl">
       <Paper shadow="xl" radius="md" p="lg">
-        <Center mb="lg">
-          <Title order={2}>AI Interview Assistant</Title>
-        </Center>
+       
 
         <Tabs defaultValue="student" variant="outline" radius="md">
           <Tabs.List grow>

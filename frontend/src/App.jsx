@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./redux/store.js";
 
+import Header from "./Header.jsx"; // import header
 import Home from "./Home.jsx";
 import ChatInterface from "./components/ChatInterface.jsx";
 import Signup from "./SignUp.jsx";
@@ -26,6 +27,7 @@ export default function App() {
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
           <RouteTracker />
+          <Header /> {/* Added Header */}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<Signup />} />
@@ -55,7 +57,6 @@ export default function App() {
                 </ProtectedRoute>
               }
             />
-            {/* <Route path="/test-details/:testID" element={<TestDetails />} /> */}
           </Routes>
         </BrowserRouter>
       </PersistGate>
